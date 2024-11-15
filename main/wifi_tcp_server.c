@@ -66,6 +66,10 @@ void tcp_server_task(void *pvParameters)
 
 			int to_write = len;
 
+			rx_buffer[len] = '\0';
+
+			ESP_LOGI(TAG, "Message: %s", rx_buffer);
+
 			while (to_write > 0)
 			{
 				int written = send(sock, rx_buffer + (len - to_write), to_write, 0);
